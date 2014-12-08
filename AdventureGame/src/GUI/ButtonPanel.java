@@ -5,11 +5,11 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-public class buttonPanel {
+public class ButtonPanel {
 
-	private JPanel buttonPanel;
+	private static JPanel buttonPanel;
 
-	public void createButtons() {
+	public static void createButtons() {
 
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
@@ -27,7 +27,7 @@ public class buttonPanel {
 		b4.setBounds(85, 495, 60, 30);
 	}
 
-	public JComponent getbuttonPanel() {
+	public static JComponent getbuttonPanel() {
 		return buttonPanel;
 	}
 
