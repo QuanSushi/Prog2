@@ -23,6 +23,8 @@ public class MainFrame extends JFrame {
 		setLocation((d.width - getSize().width) / 2, (d.height - getSize().height) / 2);
 		
 		createMenuBar();
+		buttonpanel.createButtons();
+		getContentPane().add(buttonpanel.getbuttonPanel());
 	}
 
 	private void createMenuBar() {
