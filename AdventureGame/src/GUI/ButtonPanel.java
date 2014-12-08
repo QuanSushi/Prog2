@@ -1,4 +1,6 @@
-
+/**
+longdo
+*/
 package GUI;
 
 import javax.swing.JButton;
@@ -7,9 +9,9 @@ import javax.swing.JPanel;
 
 public class ButtonPanel {
 
-	private static JPanel buttonPanel;
+	private JPanel buttonPanel;
 
-	public static void createButtons() {
+	public void createButtons() {
 
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
@@ -27,7 +29,7 @@ public class ButtonPanel {
 		b4.setBounds(85, 495, 60, 30);
 	}
 
-	public static JComponent getbuttonPanel() {
+	public JComponent getbuttonPanel() {
 		return buttonPanel;
 	}
 
