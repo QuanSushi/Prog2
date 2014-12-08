@@ -44,7 +44,6 @@ public class MainFrame extends JFrame {
 		menuBar.add(menuFile3);
 		menuBar.add(menuFile4);
 		setJMenuBar(menuBar);
-
 	}
 
 }
