@@ -1,9 +1,29 @@
 package dungeon;
 
-public class Room {
+public class Room extends AbstractRoom {
 	
 	private String id, n, e, s, w;
 	
+	public String getId() {
+		return id;
+	}
+
+	public String getN() {
+		return n;
+	}
+
+	public String getE() {
+		return e;
+	}
+
+	public String getS() {
+		return s;
+	}
+
+	public String getW() {
+		return w;
+	}
+
 	public Room(String roomplan) {
 		System.out.println("setRoom()");			//delete this later
 		System.out.println("String.split(:)");		//delete this later
