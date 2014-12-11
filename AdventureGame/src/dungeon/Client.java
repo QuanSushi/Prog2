@@ -1,9 +1,11 @@
 package dungeon;
 
+import java.util.Vector;
+
 public class Client {
 	
 	private AbstractFactory factory = null;
-	private AbstractMaze 	maze 	= null;
+	Vector<Room> labyrinth = new Vector<Room>();				//list for generated rooms
 	
 	public void setFactory(AbstractFactory factory) {
 		System.out.println("setFactory()");						//delete this later
@@ -13,14 +15,13 @@ public class Client {
 	public void makeRoom() {
 		if (this.factory != null) {
 			System.out.println("makeRoom()");					//delete this later
-			this.maze = this.factory.generateMaze();
-			this.maze.makeRoom();
+			this.factory.setRoomPlan();
+			for (int i = 0; i < this.factory.getRoomCount(); i++) {
+				this.labyrinth.add((Room) this.factory.makeRoom(i));
+				System.out.println(labyrinth.elementAt(i).toString()); //delete this later
+			}
+			
 		}
 	}
 	
-	public void printRoom() {
-		
-		this.maze.printMaze();
-	}
-
 }

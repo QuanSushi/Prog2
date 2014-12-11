@@ -1,19 +1,43 @@
 package dungeon;
 
-public class Room {
-	
+public class Room extends AbstractRoom {
+
 	private String id, n, e, s, w;
-	
+
+	public String getId() {
+		return id;
+	}
+
+	public String getN() {
+		return n;
+	}
+
+	public String getE() {
+		return e;
+	}
+
+	public String getS() {
+		return s;
+	}
+
+	public String getW() {
+		return w;
+	}
+
+	/*
+	 * This is the constructor. It takes the String parameter and splits it at
+	 * ":" resulting in getting the single attributes.
+	 */
 	public Room(String roomplan) {
-		System.out.println("setRoom()");			//delete this later
-		System.out.println("String.split(:)");		//delete this later
+		System.out.println("setRoom()"); // delete this later
+		System.out.println("String.split(:)"); // delete this later
 		String[] split = roomplan.split(":");
 		this.id = split[0];
-		this.n  = split[1];
-		this.e  = split[2];
-		this.s  = split[3];
-		this.w  = split[4];
-		System.out.println("setRoom() done");		//delete this later
+		this.n = split[1];
+		this.e = split[2];
+		this.s = split[3];
+		this.w = split[4];
+		System.out.println("setRoom() done"); // delete this later
 	}
 
 	@Override
