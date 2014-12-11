@@ -11,7 +11,9 @@ public class TestStart {
 		frame.setVisible(true);
 		Client c = new Client();
 		c.setFactory(new Factory());
+		c.setGameMaster();
 		c.makeRoom();
+		c.startGame();
 	}
 
 }
