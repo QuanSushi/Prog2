@@ -1,13 +1,16 @@
-/**
-longdo
+/*
+*longdo
 */
 package GUI;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-public class ButtonPanel {
+public class ButtonPanel implements ActionListener {
 
 	private JPanel buttonPanel;
 
@@ -31,6 +34,12 @@ public class ButtonPanel {
 
 	public JComponent getbuttonPanel() {
 		return buttonPanel;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		
 	}
 
 }
