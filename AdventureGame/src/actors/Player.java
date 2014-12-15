@@ -1,6 +1,9 @@
 package actors;
 
-public class Player {
+import java.util.Observable;
+import java.util.Observer;
+
+public class Player implements Observer {
 	
 	private String position = "1";
 	private String direction;
@@ -23,6 +26,12 @@ public class Player {
 
 	public String posToString() {
 		return "Player is in room: " + position + ".";
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		
+		
 	}
 
 }
