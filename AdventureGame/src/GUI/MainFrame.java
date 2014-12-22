@@ -9,7 +9,7 @@ import javax.swing.JMenuBar;
 
 public class MainFrame extends JFrame {
 	
-	buttonPanel buttonpanel = new buttonPanel();
+	ButtonPanel buttonpanel = new ButtonPanel();
 
 	public MainFrame() {
 		setTitle("Maze Game");
@@ -24,6 +24,7 @@ public class MainFrame extends JFrame {
 
 		createMenuBar();
 		buttonpanel.createButtons();
+		buttonpanel.createButtonListeners();
 		getContentPane().add(buttonpanel.getbuttonPanel());
 	}
 
@@ -44,7 +45,6 @@ public class MainFrame extends JFrame {
 		menuBar.add(menuFile3);
 		menuBar.add(menuFile4);
 		setJMenuBar(menuBar);
-
 	}
 
 }
