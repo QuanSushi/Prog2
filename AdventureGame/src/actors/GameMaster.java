@@ -48,9 +48,7 @@ public class GameMaster implements ActionListener {
 	public boolean checkMove(String target, String playerPos) {
 		target = this.player.getDirection();
 		playerPos = this.player.getPosition();
-		int i = Integer.parseInt(playerPos); // get index of room where the
-												// player is located at
-		Room room = this.labyrinth.elementAt(i - 1);
+		Room room = getPlayerRoom();
 
 		switch (target) {
 		case "N":
@@ -86,14 +84,7 @@ public class GameMaster implements ActionListener {
 	public void movePlayer(String direction) {
 		this.player.setDirection(direction);
 		String enterRoom = "";
-		Room room = null;
-		for (int i = 0; i < this.labyrinth.size(); i++) {
-			if (this.labyrinth.elementAt(i).getId().equals(this.player.getPosition())) {
-				room = this.labyrinth.elementAt(i);
-				System.out.println("found room");						//delete this later
-				break;
-			}
-		}
+		Room room = getPlayerRoom();
 		System.out.println("checking move..."); 						// delete this later
 		if (checkMove(direction, this.player.getPosition())) {
 			switch (direction) {
@@ -113,6 +104,18 @@ public class GameMaster implements ActionListener {
 			this.player.setPosition(enterRoom);
 		} else
 			System.out.println("You can not move in this direction!");
+	}
+	
+	private Room getPlayerRoom() {
+		Room room = null;
+		for (int i = 0; i < this.labyrinth.size(); i++) {
+			if (this.labyrinth.elementAt(i).getId().equals(this.player.getPosition())) {
+				room = this.labyrinth.elementAt(i);
+				break;
+			}
+		}
+		
+		return room;
 	}
 
 	@Override
