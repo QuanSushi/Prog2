@@ -27,7 +27,6 @@ public class GameMaster implements ActionListener {
 		if (this.player == null) {
 			this.player = new Player();
 			System.out.println("Player created");	 		//delete this later
-			System.out.println(this.player.getPosition());
 		}
 	}
 
@@ -37,10 +36,9 @@ public class GameMaster implements ActionListener {
 	 */
 	public boolean checkMove(String target, String playerPos) {
 		target = this.player.getDirection();
-		System.out.println(target + " - check target...");		//delete this later
 		playerPos = this.player.getPosition();
 		int i = Integer.parseInt(playerPos); // get index of room where the
-												// player is located at
+											 // player is located at
 		Room room = this.labyrinth.elementAt(i - 1);
 
 		switch (target) {
@@ -80,7 +78,6 @@ public class GameMaster implements ActionListener {
 																// room where
 																// the player is
 																// located at
-		System.out.println(i + " get position...");			//delete this later
 		String enterRoom = "";
 		Room room = this.labyrinth.elementAt(i - 1);
 		System.out.println(room.toString());				//delete this later

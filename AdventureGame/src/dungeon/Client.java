@@ -17,7 +17,6 @@ public class Client {
 		if (this.mf == null && this.gm != null) {
 			this.mf = new MainFrame(this.gm);
 			this.mf.setVisible(true);
-			System.out.println(this.gm.toString());				//delete later
 		}
 	}
 	
@@ -40,7 +39,6 @@ public class Client {
 			this.factory.setRoomPlan();
 			for (int i = 0; i < this.factory.getRoomCount(); i++) {
 				this.labyrinth.add((Room) this.factory.makeRoom(i));
-				System.out.println(labyrinth.elementAt(i).toString()); //delete this later
 			}
 			
 		}
