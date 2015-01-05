@@ -26,13 +26,6 @@ public class Client {
 	
 	Vector<Room> labyrinth = new Vector<Room>();				//list for generated rooms
 	
-	public void setMainFrame() {
-		if (this.mf == null && this.gm != null) {
-			this.mf = new MainFrame(this.gm);
-			this.mf.setVisible(true);
-		}
-	}
-	
 	public void setFactory(AbstractFactory factory) {
 		System.out.println("setFactory()");						//delete this later
 		if (this.factory == null) {

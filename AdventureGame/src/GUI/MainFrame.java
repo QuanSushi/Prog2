@@ -17,10 +17,8 @@ public class MainFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private GameMaster bl = null;
 
-	public MainFrame(GameMaster gm) {
-		this.bl = gm;
+	public MainFrame() {
 		setTitle("Maze Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -42,7 +40,7 @@ public class MainFrame extends JFrame {
 		JMenu menuFile3 = new JMenu("Help");
 		JMenu menuFile4 = new JMenu("Author");
 		
-		menuFile.add(MenuItemFactory.createMenuItem("Open...", 'o', "file_open"));
+		menuFile.add(MenuItemFactory.createMenuItem("Open Raumaufbau.txt...", 'o', "open_map"));
 		menuFile.add(MenuItemFactory.createMenuItem("Save...", 's', "file_save"));
 		menuFile.add(MenuItemFactory.createMenuItem("Quit...", 'q', "file_close"));
 		menuFile2.add(MenuItemFactory.createMenuItem("Open...", 'o', "figure_open"));
@@ -60,16 +58,16 @@ public class MainFrame extends JFrame {
 		
 		JButton north = new JButton("North");
 		north.setActionCommand("N");
-		north.addActionListener(this.bl);
+		north.addActionListener(GameMaster.getInstance());
 		JButton west = new JButton("West");
 		west.setActionCommand("W");
-		west.addActionListener(this.bl);
+		west.addActionListener(GameMaster.getInstance());
 		JButton east = new JButton("East");
 		east.setActionCommand("E");
-		east.addActionListener(this.bl);
+		east.addActionListener(GameMaster.getInstance());
 		JButton south = new JButton("South");
 		south.setActionCommand("S");
-		south.addActionListener(this.bl);
+		south.addActionListener(GameMaster.getInstance());
 
 		buttonPanel.setLayout(null);
 		buttonPanel.add(north);

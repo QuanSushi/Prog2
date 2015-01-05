@@ -8,6 +8,7 @@ public class MenuItemFactory {
 		JMenuItem menuItem = new JMenuItem(label);
 		menuItem.setActionCommand(actionCommand);
 		menuItem.setMnemonic(mnemonic);
+		menuItem.addActionListener(MyButtonListener.getInstance());
 		return menuItem;
 	}
 

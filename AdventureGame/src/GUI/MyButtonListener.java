@@ -4,22 +4,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 
+import actors.GameMaster;
+import dungeon.Client;
+
 class MyButtonListener implements ActionListener {
+
+	private static MyButtonListener instance;
+
+	private MyButtonListener() {
+
+	}
+
+	public static MyButtonListener getInstance() {
+		if (instance == null) {
+			instance = new MyButtonListener();
+		}
+		return instance;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("north")) {
-			System.out.println("North");
-		}else if (e.getActionCommand().equals("west")) {
-			System.out.println("West");
-		}else if (e.getActionCommand().equals("south")) {
-			System.out.println("South");
-		}else if (e.getActionCommand().equals("east")) {
-			System.out.println("East");
+		if (e.getActionCommand().equals("open_map")) {
+			Client.getInstance().makeRoom();
+			Client.getInstance().startGame();
 		}
-		
+
 	}
-	
-	
-	
+
 }
