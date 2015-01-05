@@ -59,16 +59,16 @@ public class MainFrame extends JFrame {
 		JPanel buttonPanel = new JPanel();
 		
 		JButton north = new JButton("North");
-		north.setActionCommand("north");
+		north.setActionCommand("N");
 		north.addActionListener(this.bl);
 		JButton west = new JButton("West");
-		west.setActionCommand("west");
+		west.setActionCommand("W");
 		west.addActionListener(this.bl);
 		JButton east = new JButton("East");
-		east.setActionCommand("east");
+		east.setActionCommand("E");
 		east.addActionListener(this.bl);
 		JButton south = new JButton("South");
-		south.setActionCommand("south");
+		south.setActionCommand("S");
 		south.addActionListener(this.bl);
 
 		buttonPanel.setLayout(null);

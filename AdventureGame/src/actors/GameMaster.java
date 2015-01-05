@@ -43,22 +43,22 @@ public class GameMaster implements ActionListener {
 
 		switch (target) {
 		case "N":
-			if (room.getN().contains("0")) {
+			if (room.getN().equals("0")) {
 				return false;
 			} else
 				return true;
 		case "E":
-			if (room.getE().contains("0")) {
+			if (room.getE().equals("0")) {
 				return false;
 			} else
 				return true;
 		case "S":
-			if (room.getS().contains("0")) {
+			if (room.getS().equals("0")) {
 				return false;
 			} else
 				return true;
 		case "W":
-			if (room.getW().contains("0")) {
+			if (room.getW().equals("0")) {
 				return false;
 			} else
 				return true;
@@ -80,7 +80,6 @@ public class GameMaster implements ActionListener {
 																// located at
 		String enterRoom = "";
 		Room room = this.labyrinth.elementAt(i - 1);
-		System.out.println(room.toString());				//delete this later
 		System.out.println("checking move...");				//delete this later
 		if (checkMove(direction, this.player.getPosition())) {
 			switch (direction) {
@@ -104,20 +103,21 @@ public class GameMaster implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("north")) {
+		if (e.getActionCommand().equals("N")) {
 			System.out.println("North");
 			movePlayer("N");
-		}else if (e.getActionCommand().equals("west")) {
+		}else if (e.getActionCommand().equals("W")) {
 			System.out.println("West");
 			movePlayer("W");
-		}else if (e.getActionCommand().equals("south")) {
+		}else if (e.getActionCommand().equals("S")) {
 			System.out.println("South");
 			movePlayer("S");
-		}else if (e.getActionCommand().equals("east")) {
+		}else if (e.getActionCommand().equals("E")) {
 			System.out.println("East");
 			movePlayer("E");
 		}
 		System.out.println("You are now in room: " + this.player.getPosition());
+		System.out.println(this.labyrinth.elementAt(Integer.parseInt(this.player.getPosition()) - 1)); 				//delete this later
 		
 	}
 
