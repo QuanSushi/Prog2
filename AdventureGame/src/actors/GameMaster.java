@@ -1,6 +1,7 @@
 package actors;
 
-import java.util.Observable;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import dungeon.Room;
@@ -9,14 +10,13 @@ import dungeon.Room;
  * This Class is the GameMaster.
  * The GameMaster observes the game and moves the Player, manages game rules etc.
  */
-public class GameMaster extends Observable {
-
-	Player player;
-	Vector<Room> labyrinth;
+public class GameMaster implements ActionListener {
+	private Player player;
+	private Vector<Room> labyrinth;
 
 	public GameMaster() {
-
 	}
+
 	/*
 	 * Initiate the game.
 	 */
@@ -26,6 +26,8 @@ public class GameMaster extends Observable {
 		}
 		if (this.player == null) {
 			this.player = new Player();
+			System.out.println("Player created");	 		//delete this later
+			System.out.println(this.player.getPosition());
 		}
 	}
 
@@ -33,13 +35,15 @@ public class GameMaster extends Observable {
 	 * Takes parameter direction and player position. Checks if the room has a
 	 * door at this direction. If yes, return true, if not, return false.
 	 */
-	public boolean checkMove(String direction, String playerPos) {
-		direction = player.getDirection();
-		playerPos = player.getPosition();
-		int i = Integer.parseInt(playerPos);			//get index of room where the player is located at
+	public boolean checkMove(String target, String playerPos) {
+		target = this.player.getDirection();
+		System.out.println(target + " - check target...");		//delete this later
+		playerPos = this.player.getPosition();
+		int i = Integer.parseInt(playerPos); // get index of room where the
+												// player is located at
 		Room room = this.labyrinth.elementAt(i - 1);
-		
-		switch (direction) {
+
+		switch (target) {
 		case "N":
 			if (room.getN().contains("0")) {
 				return false;
@@ -65,30 +69,59 @@ public class GameMaster extends Observable {
 		}
 
 	}
+
 	/*
-	 * Checks if player can move to give direction.
-	 * If true setPosition to direction
+	 * Checks if player can move to give direction. If true setPosition to
+	 * direction
 	 */
 	public void movePlayer(String direction) {
-		int i = Integer.parseInt(this.player.getPosition());	//get index of room where the player is located at
+		this.player.setDirection(direction);
+		int i = Integer.parseInt(this.player.getPosition()); 	// get index of
+																// room where
+																// the player is
+																// located at
+		System.out.println(i + " get position...");			//delete this later
 		String enterRoom = "";
 		Room room = this.labyrinth.elementAt(i - 1);
-		if ( checkMove(direction, player.getPosition()) ) {
+		System.out.println(room.toString());				//delete this later
+		System.out.println("checking move...");				//delete this later
+		if (checkMove(direction, this.player.getPosition())) {
 			switch (direction) {
-				case "N":  enterRoom = room.getN();
-					break;
-				case "E":  enterRoom = room.getE();
-					break;
-				case "S":  enterRoom = room.getS();
-					break;
-				case "W":  enterRoom = room.getW();
-					break;
+			case "N":
+				enterRoom = room.getN();
+				break;
+			case "E":
+				enterRoom = room.getE();
+				break;
+			case "S":
+				enterRoom = room.getS();
+				break;
+			case "W":
+				enterRoom = room.getW();
+				break;
 			}
-			player.setPosition(enterRoom);
-			setChanged();
-			notifyObservers(enterRoom);				//notify observers, that player entered a room
-		}else
+			this.player.setPosition(enterRoom);
+		} else
 			System.out.println("You can not move in this direction!");
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand().equals("north")) {
+			System.out.println("North");
+			movePlayer("N");
+		}else if (e.getActionCommand().equals("west")) {
+			System.out.println("West");
+			movePlayer("W");
+		}else if (e.getActionCommand().equals("south")) {
+			System.out.println("South");
+			movePlayer("S");
+		}else if (e.getActionCommand().equals("east")) {
+			System.out.println("East");
+			movePlayer("E");
+		}
+		System.out.println("You are now in room: " + this.player.getPosition());
+		
 	}
 
 }

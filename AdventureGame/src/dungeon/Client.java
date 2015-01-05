@@ -2,18 +2,30 @@ package dungeon;
 
 import java.util.Vector;
 
+import GUI.MainFrame;
 import actors.GameMaster;
 
 public class Client {
 	
 	private AbstractFactory factory = null;
-	private GameMaster gm;
+	private GameMaster gm = null;
+	private MainFrame mf = null;
 	
 	Vector<Room> labyrinth = new Vector<Room>();				//list for generated rooms
 	
+	public void setMainFrame() {
+		if (this.mf == null && this.gm != null) {
+			this.mf = new MainFrame(this.gm);
+			this.mf.setVisible(true);
+			System.out.println(this.gm.toString());				//delete later
+		}
+	}
+	
 	public void setFactory(AbstractFactory factory) {
 		System.out.println("setFactory()");						//delete this later
-		this.factory = factory;
+		if (this.factory == null) {
+			this.factory = factory;
+		}
 	}
 	
 	public void setGameMaster() {
@@ -37,7 +49,5 @@ public class Client {
 	public void startGame() {
 		this.gm.setGame(this.labyrinth);
 	}
-	
-	
 	
 }
