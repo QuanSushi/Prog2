@@ -7,8 +7,8 @@ import dungeon.Factory;
 public class TestStart {
 	
 	public static void main(String[] args) {
-		Client c = new Client();
-		c.setFactory(new Factory());
+		Client c = Client.getInstance();
+		c.setFactory(Factory.getInstance());
 		c.setGameMaster();
 		c.makeRoom();
 		c.setMainFrame();

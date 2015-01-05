@@ -4,14 +4,28 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Player implements Observer {
-	
+
+	private static Player instance;
+
+	private Player() {
+
+	}
+
+	public static Player getInstance() {
+		if (instance == null) {
+			instance = new Player();
+		}
+
+		return instance;
+	}
+
 	private String position = "1";
 	private String direction;
 
 	public String getPosition() {
 		return position;
 	}
-	
+
 	public void setPosition(String position) {
 		this.position = position;
 	}
@@ -30,7 +44,7 @@ public class Player implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-				
+
 	}
 
 }

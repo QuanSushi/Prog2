@@ -5,6 +5,19 @@ import input.RoomReader;
 import java.util.Vector;
 
 public class Factory extends AbstractFactory {
+	
+	private static Factory instance;
+	
+	private Factory() {
+	}
+	
+	public static Factory getInstance() {
+		if (instance == null) {
+			instance = new Factory();
+		}
+		
+		return instance;
+	}
 
 	Vector<String> roomplans = null; // this vector saves the blueprint for each
 										// room

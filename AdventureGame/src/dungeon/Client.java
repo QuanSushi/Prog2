@@ -7,6 +7,19 @@ import actors.GameMaster;
 
 public class Client {
 	
+	private static Client instance;
+	private Client() {
+		
+	}
+	
+	public static Client getInstance() {
+		if (instance == null) {
+			instance = new Client();
+		}
+		
+		return instance;
+	}
+	
 	private AbstractFactory factory = null;
 	private GameMaster gm = null;
 	private MainFrame mf = null;
@@ -29,7 +42,7 @@ public class Client {
 	
 	public void setGameMaster() {
 		if (this.gm == null) {
-			this.gm = new GameMaster();
+			this.gm = GameMaster.getInstance();
 		}
 	}
 	
