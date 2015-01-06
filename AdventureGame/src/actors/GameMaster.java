@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+import dungeon.Client;
 import dungeon.Room;
 
 /*
@@ -78,14 +79,14 @@ public class GameMaster implements ActionListener {
 	}
 
 	/*
-	 * Checks if player can move to given direction. If true setPosition to
-	 * room lying in this direction.
+	 * Checks if player can move to given direction. If true setPosition to room
+	 * lying in this direction.
 	 */
 	public void movePlayer(String direction) {
 		this.player.setDirection(direction);
 		String enterRoom = "";
 		Room room = getPlayerRoom();
-		System.out.println("checking move..."); 						// delete this later
+		System.out.println("checking move..."); // delete this later
 		if (checkMove(direction, this.player.getPosition())) {
 			switch (direction) {
 			case "N":
@@ -105,41 +106,42 @@ public class GameMaster implements ActionListener {
 		} else
 			System.out.println("You can not move in this direction!");
 	}
-	
+
 	private Room getPlayerRoom() {
 		Room room = null;
 		for (int i = 0; i < this.labyrinth.size(); i++) {
-			if (this.labyrinth.elementAt(i).getId().equals(this.player.getPosition())) {
+			if (this.labyrinth.elementAt(i).getId()
+					.equals(this.player.getPosition())) {
 				room = this.labyrinth.elementAt(i);
 				break;
 			}
 		}
-		
+
 		return room;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("N")) {
-			System.out.println("North");
-			movePlayer("N");
-		} else if (e.getActionCommand().equals("W")) {
-			System.out.println("West");
-			movePlayer("W");
-		} else if (e.getActionCommand().equals("S")) {
-			System.out.println("South");
-			movePlayer("S");
-		} else if (e.getActionCommand().equals("E")) {
-			System.out.println("East");
-			movePlayer("E");
-		}
-		System.out.println("You are now in room: " + this.player.getPosition());				//delete this later
-		for (int i = 0; i < this.labyrinth.size(); i++) {										//delete this later
-			if (this.labyrinth.elementAt(i).getId().equals(this.player.getPosition())) {		//delete this later
-				System.out.println(this.labyrinth.elementAt(i).toString());						//delete this later
-				break;																			//delete this later
-			}																					//delete this later
-		}																						//delete this later
+		if (Client.getInstance().checkLabyrinth() == true) {
+			if (e.getActionCommand().equals("N")) {
+				System.out.println("North");
+				movePlayer("N");
+			} else if (e.getActionCommand().equals("W")) {
+				System.out.println("West");
+				movePlayer("W");
+			} else if (e.getActionCommand().equals("S")) {
+				System.out.println("South");
+				movePlayer("S");
+			} else if (e.getActionCommand().equals("E")) {
+				System.out.println("East");
+				movePlayer("E");
+			}
+			
+			System.out.println("You are now in room: " + this.player.getPosition()); // delete this later
+			System.out.println(getPlayerRoom().toString()); 							// delete this later
+
+		}else
+			System.out.println("Please open map first!");
 
 	}
 

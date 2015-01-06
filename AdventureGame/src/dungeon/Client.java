@@ -2,7 +2,6 @@ package dungeon;
 
 import java.util.Vector;
 
-import GUI.MainFrame;
 import actors.GameMaster;
 
 public class Client {
@@ -11,6 +10,7 @@ public class Client {
 	private Client() {
 		
 	}
+	private boolean makeRoomDone = false;
 	
 	public static Client getInstance() {
 		if (instance == null) {
@@ -22,7 +22,6 @@ public class Client {
 	
 	private AbstractFactory factory = null;
 	private GameMaster gm = null;
-	private MainFrame mf = null;
 	
 	Vector<Room> labyrinth = new Vector<Room>();				//list for generated rooms
 	
@@ -40,18 +39,26 @@ public class Client {
 	}
 	
 	public void makeRoom() {
-		if (this.factory != null) {
+		if ((this.factory != null) && (this.makeRoomDone == false)) {
 			System.out.println("makeRoom()");					//delete this later
 			this.factory.setRoomPlan();
 			for (int i = 0; i < this.factory.getRoomCount(); i++) {
 				this.labyrinth.add((Room) this.factory.makeRoom(i));
 			}
-			
+			this.makeRoomDone = true;
 		}
+		
 	}
 	
 	public void startGame() {
 		this.gm.setGame(this.labyrinth);
+	}
+	
+	public boolean checkLabyrinth() {
+		if (this.labyrinth.size() > 1) {
+			return true;
+		}else
+			return false;
 	}
 	
 }
