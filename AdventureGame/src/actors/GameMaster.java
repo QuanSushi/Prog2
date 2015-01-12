@@ -41,6 +41,12 @@ public class GameMaster implements ActionListener {
 			System.out.println("Player created"); // delete this later
 		}
 	}
+	
+	public Room getRoom(int i) {
+		Room room = this.labyrinth.elementAt(i);
+		
+		return room;
+	}
 
 	/*
 	 * Takes parameter direction and player position. Checks if the room has a

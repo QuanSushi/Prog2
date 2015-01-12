@@ -1,5 +1,6 @@
 package dungeon;
 
+import java.util.Random;
 import java.util.Vector;
 
 import actors.GameMaster;
@@ -48,6 +49,10 @@ public class Client {
 			this.makeRoomDone = true;
 		}
 		
+			Random random = new Random();
+			int r = random.nextInt(this.labyrinth.size());
+			this.labyrinth.elementAt(r).setMagicRoom(true);
+			System.out.println("MagicRoom with ID " + this.labyrinth.elementAt(r).getId() + " created"); //delete this later
 	}
 	
 	public void startGame() {

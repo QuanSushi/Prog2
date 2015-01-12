@@ -3,6 +3,7 @@ package dungeon;
 public class Room extends AbstractRoom {
 
 	private String id, n, e, s, w;
+	private boolean isMagicRoom = false;
 
 	public String getId() {
 		return id;
@@ -41,6 +42,14 @@ public class Room extends AbstractRoom {
 	public String toString() {
 		return "Room [id=" + id + ", n=" + n + ", e=" + e + ", s=" + s + ", w="
 				+ w + "]";
+	}
+
+	public boolean isMagicRoom() {
+		return isMagicRoom;
+	}
+
+	public void setMagicRoom(boolean isMagicRoom) {
+		this.isMagicRoom = isMagicRoom;
 	}
 
 }
