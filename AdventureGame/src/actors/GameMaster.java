@@ -2,6 +2,7 @@ package actors;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import java.util.Vector;
 
 import dungeon.Client;
@@ -30,7 +31,7 @@ public class GameMaster implements ActionListener {
 	private Vector<Room> labyrinth;
 
 	/*
-	 * Initiate the game.
+	 * Initiate the game. Set player position to a random room.
 	 */
 	public void setGame(Vector<Room> labyrinth) {
 		if (this.labyrinth == null) {
@@ -38,6 +39,11 @@ public class GameMaster implements ActionListener {
 		}
 		if (this.player == null) {
 			this.player = Player.getInstance();
+			Random random = new Random();
+			int r = random.nextInt(this.labyrinth.size());
+			String s = String.valueOf(r);
+			this.player.setPosition(s);
+			
 			System.out.println("Player created"); // delete this later
 		}
 	}
