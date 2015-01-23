@@ -202,4 +202,8 @@ public class GameMaster implements ActionListener, KeyListener{
 	public void keyReleased(KeyEvent e) {
 	}
 
+	public Vector<Room> getLabyrinth() {
+		return labyrinth;
+	}
+
 }

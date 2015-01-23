@@ -21,9 +21,23 @@ import java.util.Vector;
 public class RoomReader {
 
 	private Vector<String> vec = new Vector<String>();
+	
+	private static RoomReader instance;
+	
+	public static RoomReader getInstance() {
+		if (instance == null) {
+			instance = new RoomReader();
+		}
+		return instance;
+	}
 
-	public RoomReader() {
-		
+	private RoomReader() {
+		try {
+			readRoomPlan();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private String getResources() {
@@ -57,12 +71,6 @@ public class RoomReader {
 	 * @return method returns the vector with the build plan for each room.
 	 */
 	public Vector<String> getRoomPlans() {
-		try {
-			readRoomPlan();
-			System.out.println("getRoomPlans()");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		return this.vec;
 	}
 

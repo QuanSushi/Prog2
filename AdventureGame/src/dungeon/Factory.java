@@ -40,8 +40,7 @@ public class Factory extends AbstractFactory {
 	@Override
 	public void setRoomPlan() {
 		if (roomplans == null) {
-			RoomReader rr = new RoomReader();
-			this.roomplans = rr.getRoomPlans();
+			this.roomplans = RoomReader.getInstance().getRoomPlans();
 		}
 	}
 

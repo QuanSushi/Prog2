@@ -20,9 +20,7 @@ public class ImageReader {
 	private ImageIcon image;
 	
 	public String getImgURL() {
-		java.net.URL imageURL = ImageReader.class.getClass().getResource("files/room.png");
-		System.out.println("get path..."); //delete this later
-		System.out.println(imageURL.getPath());
+		java.net.URL imageURL = ImageReader.class.getClassLoader().getResource("files/room.png");
 		return imageURL.getPath();
 	}
 	
