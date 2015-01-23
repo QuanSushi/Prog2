@@ -1,10 +1,14 @@
 package actors;
 
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Random;
 import java.util.Vector;
 
+import GUI.ControllerPanel;
 import dungeon.Client;
 import dungeon.Room;
 
@@ -12,7 +16,7 @@ import dungeon.Room;
  * This Class is the GameMaster.
  * The GameMaster observes the game and moves the Player, manages game rules etc.
  */
-public class GameMaster implements ActionListener {
+public class GameMaster implements ActionListener, KeyListener{
 
 	private static GameMaster instance;
 
@@ -149,12 +153,53 @@ public class GameMaster implements ActionListener {
 				movePlayer("E");
 			}
 			
+					
 			System.out.println("You are now in room: " + this.player.getPosition()); // delete this later
 			System.out.println(getPlayerRoom().toString()); 							// delete this later
 
 		}else
 			System.out.println("Please open map first!");
 
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int key=e.getKeyCode();
+		if (Client.getInstance().checkLabyrinth() == true) {
+		if(key==e.VK_UP){
+			System.out.println("North");
+			movePlayer("N");
+		}else if(key==e.VK_LEFT){
+			System.out.println("West");
+			movePlayer("W");}
+		else if(key==e.VK_RIGHT){
+			System.out.println("East");
+			movePlayer("E");
+			}
+		else if(key==e.VK_DOWN){
+			System.out.println("South");
+			movePlayer("S");}
+		else{
+			System.out.println("Bitte gib n,s,w,e ein");
+			
+		}
+		
+		System.out.println("You are now in room: " + this.player.getPosition()); // delete this later
+		System.out.println(getPlayerRoom().toString()); 	
+		}else
+			System.out.println("Please open map first!");
+		
+
+		}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
 	}
 
 }

@@ -1,12 +1,11 @@
 package GUI;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
@@ -17,29 +16,27 @@ public class MainFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 
+	 */
 	public MainFrame() {
-		setTitle("Maze Game");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		setSize(800, 600);				//sizing app frame
+		
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation((d.width - getSize().width) / 2, (d.height - getSize().height) / 2);		//centering app frame
-
-		createMenuBar();
+		MapPanel map = MapPanel.getInstance();
 		ControllerPanel controller = new ControllerPanel();
+		
+		this.setTitle("Maze Game");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
+		this.setSize(800, 600);				//sizing app frame
+		this.setLocation((d.width - getSize().width) / 2, (d.height - getSize().height) / 2);		//centering app frame
+		this.setBackground(Color.BLACK);
+		this.getContentPane().setLayout(new BorderLayout());
+	
+		createMenuBar();
 		controller.createButtons();
-		
-		getContentPane().add(controller.getControllerPanel());
-		
-		/*
-		//test		
-		JInternalFrame inFrame1 = new JInternalFrame("Dokument 1", true, true, true, true);
-		inFrame1.setSize(200,200);
-		inFrame1.setLocation(0, 0);
-		inFrame1.show();
-		
-		getContentPane().add(inFrame1);
-		*/
+		getContentPane().add(map.getMapPanel());
+		getContentPane().add(controller.getControllerPanel(),BorderLayout.PAGE_END);
 
 		
 	}

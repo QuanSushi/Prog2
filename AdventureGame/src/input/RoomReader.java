@@ -30,6 +30,7 @@ public class RoomReader {
 		java.net.URL url = RoomReader.class.getClassLoader().getResource(
 				"files/Raumaufbau.txt");
 		System.out.println("RoomReader: Reading files/Raumaufbau.txt...");				//delete this line
+		System.out.println(url.getPath());
 		return url.getPath();
 	}
 
