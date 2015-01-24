@@ -20,6 +20,7 @@ public class Player extends Observable {
 
 	private String position = "1";
 	private String direction;
+	private Boolean isAbleToMove = true;
 
 	public String getPosition() {
 		return position;
@@ -41,6 +42,14 @@ public class Player extends Observable {
 
 	public String posToString() {
 		return "Player is in room: " + position + ".";
+	}
+
+	public Boolean getIsAbleToMove() {
+		return isAbleToMove;
+	}
+
+	public void setIsAbleToMove(Boolean isAbleToMove) {
+		this.isAbleToMove = isAbleToMove;
 	}
 
 }

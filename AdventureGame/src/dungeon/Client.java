@@ -55,7 +55,7 @@ public class Client {
 			int r = random.nextInt(this.labyrinth.size());
 			this.factoryB.setRoomPlan();
 			this.labyrinth.set(r, (MagicRoom) this.factoryB.makeRoom(r));
-			System.out.println("MagicRoom is room: " + r);
+			System.out.println("MagicRoom is room: " + this.labyrinth.elementAt(r).getId());
 	}
 	
 	public void startGame() {

@@ -7,7 +7,7 @@ package dungeon;
 public abstract class AbstractRoom {
 	
 	private String id, n, e, s, w;
-	private Boolean isMagicRoom;
+	private boolean isMagicRoom;
 
 	public String getId() {
 		return id;
@@ -49,11 +49,11 @@ public abstract class AbstractRoom {
 		this.w = w;
 	}
 
-	public Boolean getIsMagicRoom() {
+	public boolean getIsMagicRoom() {
 		return isMagicRoom;
 	}
 
-	public void setIsMagicRoom(Boolean isMagicRoom) {
+	public void setIsMagicRoom(boolean isMagicRoom) {
 		this.isMagicRoom = isMagicRoom;
 	}
 

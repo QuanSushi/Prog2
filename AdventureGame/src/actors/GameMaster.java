@@ -52,7 +52,7 @@ public class GameMaster implements ActionListener, KeyListener{
 			
 			String s = String.valueOf(r);
 			this.player.setPosition(s);			
-			
+			System.out.println(this.player.getPosition());
 			this.player.addObserver(MapPanel.getInstance());
 		}
 	}
@@ -164,7 +164,7 @@ public class GameMaster implements ActionListener, KeyListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (Client.getInstance().checkLabyrinth() == true) {
+		if (Client.getInstance().checkLabyrinth() == true && player.getIsAbleToMove()) {
 			if (e.getActionCommand().equals("N")) {
 				System.out.println("North");
 				movePlayer("N");
@@ -180,12 +180,10 @@ public class GameMaster implements ActionListener, KeyListener{
 			}
 			
 			System.out.println(getPlayerRoom().toString()); 							// delete this later
-
 		}else
-			System.out.println("Please open map first!");
-
+			System.out.println("Not able to move yet!");
 		if ( getRoom(player.getPosition()).getIsMagicRoom()) {
-			MagicRoomEvent.getInstance();
+			MagicRoomEvent.getInstance().quiz();
 		}
 	}
 
@@ -198,7 +196,7 @@ public class GameMaster implements ActionListener, KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key=e.getKeyCode();
-		if (Client.getInstance().checkLabyrinth() == true) {
+		if (Client.getInstance().checkLabyrinth() == true && player.getIsAbleToMove()) {
 		if(key==e.VK_UP){
 			System.out.println("North");
 			movePlayer("N");
@@ -219,7 +217,7 @@ public class GameMaster implements ActionListener, KeyListener{
 		
 		System.out.println(getPlayerRoom().toString()); 	
 		}else
-			System.out.println("Please open map first!");
+			System.out.println("Not able to move yet!");
 		
 
 		}

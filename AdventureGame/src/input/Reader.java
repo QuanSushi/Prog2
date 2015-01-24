@@ -68,6 +68,7 @@ public class Reader {
 	 * @throws IOException 
 	 */
 	public Vector<String> getRoomPlans() throws IOException {
+		System.out.println("read Raumaufbau.txt");
 		return readFile("files/Raumaufbau.txt");
 	}
 	
@@ -77,7 +78,8 @@ public class Reader {
 	 * @throws IOException
 	 */
 	public Vector<String> getQuestions() throws IOException {
-		return readFile("files/sprueche.txt");
+		System.out.println("read Fragen.txt");
+		return readFile("files/Fragen.txt");
 	}
 
 }

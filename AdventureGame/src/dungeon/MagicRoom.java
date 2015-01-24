@@ -9,7 +9,7 @@ package dungeon;
 public class MagicRoom extends AbstractRoom {
 
 	private String id, n, e, s, w;
-	private Boolean isMagicRoom = true;
+	private boolean isMagicRoom = true;
 
 	public String getId() {
 		return id;
@@ -50,11 +50,11 @@ public class MagicRoom extends AbstractRoom {
 				+ w + "]";
 	}
 
-	public Boolean getIsMagicRoom() {
+	public boolean getIsMagicRoom() {
 		return isMagicRoom;
 	}
 
-	public void setIsMagicRoom(Boolean isMagicRoom) {
+	public void setIsMagicRoom(boolean isMagicRoom) {
 		this.isMagicRoom = isMagicRoom;
 	}
 
