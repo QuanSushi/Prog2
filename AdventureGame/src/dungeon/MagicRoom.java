@@ -1,5 +1,11 @@
 package dungeon;
 
+/**
+ * This class is the magic room.
+ * @author QS
+ *
+ */
+
 public class MagicRoom extends AbstractRoom {
 
 	private String id, n, e, s, w;

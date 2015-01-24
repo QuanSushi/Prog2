@@ -1,5 +1,9 @@
 package GUI;
 
+/**
+ * This class handles menu bar items.
+ */
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import dungeon.Client;
@@ -18,7 +22,10 @@ class MyButtonListener implements ActionListener {
 		}
 		return instance;
 	}
-
+	
+	/**
+	 * Actionlistener for menu bar items.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("open_map")) {

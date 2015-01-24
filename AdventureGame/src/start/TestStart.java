@@ -1,5 +1,6 @@
 package start;
 
+import GUI.AWTConsole;
 import GUI.MainFrame;
 import dungeon.Client;
 import dungeon.Factory;
@@ -14,6 +15,7 @@ public class TestStart {
 		c.setGameMaster();
 		MainFrame mf = new MainFrame();
 		mf.setVisible(true);
+		AWTConsole console = new AWTConsole();
 		
 	}
 

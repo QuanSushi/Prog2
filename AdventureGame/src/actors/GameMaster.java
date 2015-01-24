@@ -12,12 +12,14 @@ import GUI.ControllerPanel;
 import GUI.MapPanel;
 import dungeon.AbstractRoom;
 import dungeon.Client;
+import dungeon.MagicRoomEvent;
 import dungeon.Room;
 
-/*
+/**
  * This Class is the GameMaster.
  * The GameMaster observes the game and moves the Player, manages game rules etc.
  */
+
 public class GameMaster implements ActionListener, KeyListener{
 
 	private static GameMaster instance;
@@ -36,8 +38,8 @@ public class GameMaster implements ActionListener, KeyListener{
 	private Player player;
 	private Vector<AbstractRoom> labyrinth;
 
-	/*
-	 * Initiate the game. Set player position to a random room.
+	/**
+	 * Initiates the game. Sets player position to a random room.
 	 */
 	public void setGame(Vector<AbstractRoom> labyrinth) {
 		if (this.labyrinth == null) {
@@ -47,22 +49,25 @@ public class GameMaster implements ActionListener, KeyListener{
 			this.player = Player.getInstance();
 			Random random = new Random();
 			int r = random.nextInt(this.labyrinth.size());
+			
 			String s = String.valueOf(r);
-			this.player.setPosition(s);
+			this.player.setPosition(s);			
 			
 			this.player.addObserver(MapPanel.getInstance());
-			
-			System.out.println("Player created"); // delete this later
 		}
 	}
 	
+	/**
+	 * 
+	 * @param i
+	 * @return a specific room in the list at i
+	 */
 	public AbstractRoom getRoom(int i) {
 		AbstractRoom room = this.labyrinth.elementAt(i);
-		
 		return room;
 	}
 
-	/*
+	/**
 	 * Takes parameter direction and player position. Checks if the room has a
 	 * door at this direction. If yes, return true, if not, return false.
 	 */
@@ -98,8 +103,8 @@ public class GameMaster implements ActionListener, KeyListener{
 
 	}
 
-	/*
-	 * Checks if player can move to given direction. If true setPosition to room
+	/**
+	 * Checks if player is able to move to given direction. If true setPosition to room
 	 * lying in this direction.
 	 */
 	public void movePlayer(String direction) {
@@ -126,6 +131,10 @@ public class GameMaster implements ActionListener, KeyListener{
 			System.out.println("You can not move in this direction!");
 	}
 
+	/**
+	 * 
+	 * @return room where the player is currently staying.
+	 */
 	private AbstractRoom getPlayerRoom() {
 		AbstractRoom room = null;
 		for (int i = 0; i < this.labyrinth.size(); i++) {
@@ -135,7 +144,21 @@ public class GameMaster implements ActionListener, KeyListener{
 				break;
 			}
 		}
-
+		return room;
+	}
+	
+	/**
+	 * 
+	 * @param ID
+	 * @return room with the specific ID
+	 */
+	private AbstractRoom getRoom(String ID) {
+		AbstractRoom room = null;
+		for (int i = 0; i < this.labyrinth.size(); i++) {
+			if ((this.labyrinth.elementAt(i)).getId().equals(ID)) {
+				room = this.labyrinth.elementAt(i);
+			}
+		}
 		return room;
 	}
 
@@ -161,6 +184,9 @@ public class GameMaster implements ActionListener, KeyListener{
 		}else
 			System.out.println("Please open map first!");
 
+		if ( getRoom(player.getPosition()).getIsMagicRoom()) {
+			MagicRoomEvent.getInstance();
+		}
 	}
 
 	@Override

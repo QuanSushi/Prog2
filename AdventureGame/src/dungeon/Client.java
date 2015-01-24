@@ -44,7 +44,6 @@ public class Client {
 	
 	public void makeRoom() {
 		if ((this.factory != null) && (this.makeRoomDone == false)) {
-			System.out.println("makeRoom()");					//delete this later
 			this.factory.setRoomPlan();
 			for (int i = 0; i < this.factory.getRoomCount(); i++) {
 				this.labyrinth.add((Room) this.factory.makeRoom(i));
@@ -57,8 +56,6 @@ public class Client {
 			this.factoryB.setRoomPlan();
 			this.labyrinth.set(r, (MagicRoom) this.factoryB.makeRoom(r));
 			System.out.println("MagicRoom is room: " + r);
-			
-
 	}
 	
 	public void startGame() {

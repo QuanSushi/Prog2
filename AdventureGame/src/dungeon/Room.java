@@ -1,8 +1,16 @@
 package dungeon;
 
+/**
+ * This class is the room.
+ * @author QS
+ *
+ */
+
 public class Room extends AbstractRoom {
 
 	private String id, n, e, s, w;
+	
+	private Boolean isMagicRoom = false;
 
 	public String getId() {
 		return id;
@@ -41,6 +49,14 @@ public class Room extends AbstractRoom {
 	public String toString() {
 		return "Room [id=" + id + ", n=" + n + ", e=" + e + ", s=" + s + ", w="
 				+ w + "]";
+	}
+
+	public Boolean getIsMagicRoom() {
+		return isMagicRoom;
+	}
+
+	public void setIsMagicRoom(Boolean isMagicRoom) {
+		this.isMagicRoom = isMagicRoom;
 	}
 
 }

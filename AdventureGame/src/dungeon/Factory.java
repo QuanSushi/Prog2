@@ -1,7 +1,8 @@
 package dungeon;
 
-import input.RoomReader;
+import input.Reader;
 
+import java.io.IOException;
 import java.util.Vector;
 
 public class Factory extends AbstractFactory {
@@ -40,7 +41,12 @@ public class Factory extends AbstractFactory {
 	@Override
 	public void setRoomPlan() {
 		if (roomplans == null) {
-			this.roomplans = RoomReader.getInstance().getRoomPlans();
+			try {
+				this.roomplans = Reader.getInstance().getRoomPlans();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
