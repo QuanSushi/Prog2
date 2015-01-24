@@ -1,8 +1,9 @@
 package dungeon;
 
-public class Room extends AbstractRoom {
+public class MagicRoom extends AbstractRoom {
 
 	private String id, n, e, s, w;
+	private Boolean isMagicRoom = true;
 
 	public String getId() {
 		return id;
@@ -28,7 +29,7 @@ public class Room extends AbstractRoom {
 	 * This is the constructor. It takes the String parameter and splits it at
 	 * ":" resulting in getting the single attributes.
 	 */
-	public Room(String roomplan) {
+	public MagicRoom(String roomplan) {
 		String[] split = roomplan.split(":");
 		this.id = split[0];
 		this.n = split[1];
@@ -39,8 +40,16 @@ public class Room extends AbstractRoom {
 
 	@Override
 	public String toString() {
-		return "Room [id=" + id + ", n=" + n + ", e=" + e + ", s=" + s + ", w="
+		return "MagicRoom [id=" + id + ", n=" + n + ", e=" + e + ", s=" + s + ", w="
 				+ w + "]";
+	}
+
+	public Boolean getIsMagicRoom() {
+		return isMagicRoom;
+	}
+
+	public void setIsMagicRoom(Boolean isMagicRoom) {
+		this.isMagicRoom = isMagicRoom;
 	}
 
 }

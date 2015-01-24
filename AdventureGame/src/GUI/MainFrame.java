@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
 		this.setTitle("Maze Game");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-		this.setSize(800, 600);				//sizing app frame
+		this.setSize(765, 595);				//sizing app frame
 		this.setLocation((d.width - getSize().width) / 2, (d.height - getSize().height) / 2);		//centering app frame
 		this.setBackground(Color.BLACK);
 		this.getContentPane().setLayout(new BorderLayout());
