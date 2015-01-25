@@ -1,5 +1,9 @@
 package actors;
 
+/**
+ * this class is the player's hero.
+ */
+
 import java.util.Observable;
 
 public class Player extends Observable {
@@ -20,7 +24,7 @@ public class Player extends Observable {
 
 	private String position = "1";
 	private String direction;
-	private Boolean isAbleToMove = true;
+	private Boolean isAbleToMove = false;
 
 	public String getPosition() {
 		return position;

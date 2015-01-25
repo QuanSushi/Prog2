@@ -73,8 +73,7 @@ public class MapPanel implements Observer {
 		setyCoordinate(getY() / 2);
 		setxCoordinate(getX() / 2);
 		setCurrentTile(map[yCoordinate][xCoordinate]);
-		getCurrentTile().paint("pl_room");
-		drawMap();
+		getCurrentTile().paint("room");
 	}
 
 	/**
@@ -112,7 +111,7 @@ public class MapPanel implements Observer {
 
 		if (!cache.getW().equals("0")) {
 			if (GameMaster.getInstance().getRoom(cache.getW()).getIsMagicRoom()) {
-				map[yCoordinate][xCoordinate - 1].paint("magic_room");
+				map[yCoordinate][xCoordinate - 1].paint("magicRoom");
 			} else
 				map[yCoordinate][xCoordinate - 1].paint("room");
 		}

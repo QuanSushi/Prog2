@@ -1,5 +1,9 @@
 package GUI;
 
+/**
+ * Controller buttons for movements
+ */
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Label;
@@ -14,7 +18,7 @@ import actors.GameMaster;
 public class ControllerPanel {
 	
 	private JPanel buttonPanel = new JPanel();
-	private Label label=new Label("Geben Sie eine Richtung mit den Pfeiltasten oder n,s,w,e an:");
+	private Label label=new Label("Click the field and use arrow keys to move.");
 	private TextField textfield=new TextField();
 	
 	
