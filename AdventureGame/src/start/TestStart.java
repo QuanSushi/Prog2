@@ -1,6 +1,5 @@
 package start;
 
-import GUI.AWTConsole;
 import GUI.MainFrame;
 import dungeon.Client;
 import dungeon.Factory;

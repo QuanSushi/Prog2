@@ -46,7 +46,8 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 		if (this.player == null) {
 			this.player = Player.getInstance();
 			Random random = new Random();
-			int r = random.nextInt((this.labyrinth.size()) + 1);
+			int r = random.nextInt((this.labyrinth.size()));
+			r += 1;
 			
 			String s = String.valueOf(r);
 			this.player.setPosition(s);	
@@ -57,7 +58,7 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 	}
 	
 	/**
-	 * 
+	 * Gets a room in the vector.
 	 * @param i
 	 * @return a specific room in the list at i
 	 */
@@ -111,6 +112,9 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 		String enterRoom = "";
 		AbstractRoom room = getPlayerRoom();
 		if (checkMove(direction, this.player.getPosition())) {
+			if (direction.equals(getMagicRoom().getId())) {
+				MagicRoomEvent.getInstance().quiz();
+			}
 			switch (direction) {
 			case "N":
 				enterRoom = room.getN();
@@ -144,10 +148,24 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 		} else
 			System.out.println("You can not move in this direction!");
 	}
-
+	
 	/**
-	 * 
-	 * @return room where the player is currently staying.
+	 * Searches for the magic room
+	 * @return magic room
+	 */
+	public AbstractRoom getMagicRoom() {
+		AbstractRoom room = null;
+		for (int i = 0; i < this.labyrinth.size(); i++) {
+			if (labyrinth.elementAt(i).getIsMagicRoom()) {
+				room = labyrinth.elementAt(i);
+			}
+		}
+		return room;
+	}
+	
+	/**
+	 * Searches for the room, where player is positioned.
+	 * @return room where Id = player.getPosition()
 	 */
 	public AbstractRoom getPlayerRoom() {
 		AbstractRoom room = null;
@@ -162,9 +180,9 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 	}
 	
 	/**
-	 * 
+	 * Searches for a specific room.
 	 * @param ID
-	 * @return room with the specific ID
+	 * @return room with Id == ID
 	 */
 	public AbstractRoom getRoom(String ID) {
 		AbstractRoom room = null;
@@ -176,6 +194,10 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 		return room;
 	}
 	
+	/**
+	 * Count rooms on y-axis
+	 * @return integer
+	 */
 	public int countNorth() {
 		int north = 1;
 		
@@ -188,6 +210,10 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 		return north;
 	}
 	
+	/**
+	 * Counts rooms on the x-axis
+	 * @return integer
+	 */
 	public int countEast() {
 		int east = 1;
 		
@@ -200,7 +226,9 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 		System.out.println(east);
 		return east;
 	}
-
+	/**
+	 * Handling button pressing.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (Client.getInstance().checkLabyrinth() == true && player.getIsAbleToMove()) {
@@ -238,40 +266,41 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+	 * handles movement with arrow keys
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key=e.getKeyCode();
 		if (Client.getInstance().checkLabyrinth() == true && player.getIsAbleToMove()) {
-		if(key==e.VK_UP){
-			System.out.println("North");
-			movePlayer("N");
-			if ( getRoom(player.getPosition()).getIsMagicRoom()) {
-				MagicRoomEvent.getInstance().quiz();
-			}
-		}else if(key==e.VK_LEFT){
-			System.out.println("West");
-			movePlayer("W");}
-			if ( getRoom(player.getPosition()).getIsMagicRoom()) {
-				MagicRoomEvent.getInstance().quiz();
-			}
-		else if(key==e.VK_RIGHT){
-			System.out.println("East");
-			movePlayer("E");
-			if ( getRoom(player.getPosition()).getIsMagicRoom()) {
-				MagicRoomEvent.getInstance().quiz();
+			if(key==e.VK_UP){
+				System.out.println("North");
+				movePlayer("N");
+				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
+					MagicRoomEvent.getInstance().quiz();
 				}
-			}
-		else if(key==e.VK_DOWN){
-			System.out.println("South");
-			movePlayer("S");}
-			if ( getRoom(player.getPosition()).getIsMagicRoom()) {
-				MagicRoomEvent.getInstance().quiz();
-			}
-		else{
-			System.out.println("Bitte gib n,s,w,e ein");
-			
-		}	
+			}else if(key==e.VK_LEFT){
+				System.out.println("West");
+				movePlayer("W");}
+				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
+					MagicRoomEvent.getInstance().quiz();
+				}
+			else if(key==e.VK_RIGHT){
+				System.out.println("East");
+				movePlayer("E");
+				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
+					MagicRoomEvent.getInstance().quiz();
+					}
+				}
+			else if(key==e.VK_DOWN){
+				System.out.println("South");
+				movePlayer("S");}
+				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
+					MagicRoomEvent.getInstance().quiz();
+				}
+			else{
+				System.out.println("Bitte gib n,s,w,e ein");	
+				}	
 		}else
 			System.out.println("Not able to move yet!");
 		
