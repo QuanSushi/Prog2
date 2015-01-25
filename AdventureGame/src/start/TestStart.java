@@ -3,17 +3,18 @@ package start;
 import GUI.MainFrame;
 import dungeon.Client;
 import dungeon.Factory;
+import dungeon.FactoryB;
 
 public class TestStart {
-	
+
 	public static void main(String[] args) {
-		MainFrame frame = new MainFrame();
-		frame.setVisible(true);
-		Client c = new Client();
-		c.setFactory(new Factory());
+		
+		Client c = Client.getInstance();
+		c.setFactory(Factory.getInstance(), FactoryB.getInstance());
 		c.setGameMaster();
-		c.makeRoom();
-		c.startGame();
+		MainFrame mf = MainFrame.getInstance();
+		mf.setVisible(true);
+
 	}
 
 }

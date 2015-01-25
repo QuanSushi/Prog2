@@ -1,19 +1,35 @@
 package actors;
 
 import java.util.Observable;
-import java.util.Observer;
 
-public class Player implements Observer {
-	
+public class Player extends Observable {
+
+	private static Player instance;
+
+	private Player() {
+
+	}
+
+	public static Player getInstance() {
+		if (instance == null) {
+			instance = new Player();
+		}
+
+		return instance;
+	}
+
 	private String position = "1";
 	private String direction;
+	private Boolean isAbleToMove = true;
 
 	public String getPosition() {
 		return position;
 	}
-	
+
 	public void setPosition(String position) {
 		this.position = position;
+		setChanged();
+		notifyObservers(position);
 	}
 
 	public String getDirection() {
@@ -28,10 +44,12 @@ public class Player implements Observer {
 		return "Player is in room: " + position + ".";
 	}
 
-	@Override
-	public void update(Observable o, Object arg) {
-		
-		
+	public Boolean getIsAbleToMove() {
+		return isAbleToMove;
+	}
+
+	public void setIsAbleToMove(Boolean isAbleToMove) {
+		this.isAbleToMove = isAbleToMove;
 	}
 
 }

@@ -1,10 +1,24 @@
 package dungeon;
 
-import input.RoomReader;
+import input.Reader;
 
+import java.io.IOException;
 import java.util.Vector;
 
 public class Factory extends AbstractFactory {
+	
+	private static Factory instance;
+	
+	private Factory() {
+	}
+	
+	public static Factory getInstance() {
+		if (instance == null) {
+			instance = new Factory();
+		}
+		
+		return instance;
+	}
 
 	Vector<String> roomplans = null; // this vector saves the blueprint for each
 										// room
@@ -27,8 +41,12 @@ public class Factory extends AbstractFactory {
 	@Override
 	public void setRoomPlan() {
 		if (roomplans == null) {
-			RoomReader rr = new RoomReader();
-			this.roomplans = rr.getRoomPlans();
+			try {
+				this.roomplans = Reader.getInstance().getRoomPlans();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
