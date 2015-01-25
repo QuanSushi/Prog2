@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import actors.Player;
 
 /**
@@ -62,16 +64,14 @@ public class MagicRoomEvent {
 		boolean quiz = true;
 		Random r = new Random();
 		int zahl = r.nextInt(questions.size());
-		System.out.println(zahl);
-		System.out.println("why oes this happen?" + questions.elementAt(zahl));
+
 		while (quiz) {
-			/*pseudocode:
-			* if (input.toLowerCase().equals(answers.elementAt(zahl)) {
-			* System.out.println("Deine Antwort ist richtig!");
-			* Player.getInstance().setIsAbleToMove(true);
-			* quiz = false;
-			*/
+			String input = JOptionPane.showInputDialog(questions.elementAt(zahl), JOptionPane.QUESTION_MESSAGE);
+				if (input.toLowerCase().equals(answers.elementAt(zahl))) {
+					System.out.println("Deine Antwort ist richtig!");
+				}
 			quiz = false;
+			Player.getInstance().setIsAbleToMove(true);
 		}
 		
 	}

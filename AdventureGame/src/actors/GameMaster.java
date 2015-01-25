@@ -8,6 +8,8 @@ import java.util.Observable;
 import java.util.Random;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import GUI.MapPanel;
 import dungeon.AbstractRoom;
 import dungeon.Client;
@@ -302,10 +304,9 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 				System.out.println("Bitte gib n,s,w,e ein");	
 				}	
 		}else
-			System.out.println("Not able to move yet!");
-		
+			JOptionPane.showMessageDialog(null, "Not able to move yet!", null, JOptionPane.ERROR_MESSAGE);
+	}
 
-		}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
