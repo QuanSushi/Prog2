@@ -235,25 +235,21 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 	public void actionPerformed(ActionEvent e) {
 		if (Client.getInstance().checkLabyrinth() == true && player.getIsAbleToMove()) {
 			if (e.getActionCommand().equals("N")) {
-				System.out.println("North");
 				movePlayer("N");
 				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
 					MagicRoomEvent.getInstance().quiz();
 				}
 			} else if (e.getActionCommand().equals("W")) {
-				System.out.println("West");
 				movePlayer("W");
 				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
 					MagicRoomEvent.getInstance().quiz();
 				}
 			} else if (e.getActionCommand().equals("S")) {
-				System.out.println("South");
 				movePlayer("S");
 				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
 					MagicRoomEvent.getInstance().quiz();
 				}
 			} else if (e.getActionCommand().equals("E")) {
-				System.out.println("East");
 				movePlayer("E");
 				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
 					MagicRoomEvent.getInstance().quiz();
@@ -273,6 +269,11 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
+			}
+
+
+	@Override
+	public void keyReleased(KeyEvent e) {
 		int key=e.getKeyCode();
 		if (Client.getInstance().checkLabyrinth() == true && player.getIsAbleToMove()) {
 			if(key==e.VK_UP){
@@ -300,16 +301,10 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
 					MagicRoomEvent.getInstance().quiz();
 				}
-			else{
-				System.out.println("Bitte gib n,s,w,e ein");	
-				}	
+				
 		}else
 			JOptionPane.showMessageDialog(null, "Not able to move yet!", null, JOptionPane.ERROR_MESSAGE);
-	}
 
-
-	@Override
-	public void keyReleased(KeyEvent e) {
 	}
 
 }

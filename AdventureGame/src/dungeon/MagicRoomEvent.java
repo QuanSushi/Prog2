@@ -65,14 +65,21 @@ public class MagicRoomEvent {
 		Random r = new Random();
 		int zahl = r.nextInt(questions.size());
 
-		while (quiz) {
-			String input = JOptionPane.showInputDialog(questions.elementAt(zahl), JOptionPane.QUESTION_MESSAGE);
-				if (input.toLowerCase().equals(answers.elementAt(zahl))) {
-					System.out.println("Deine Antwort ist richtig!");
-				}
-			quiz = false;
-			Player.getInstance().setIsAbleToMove(true);
-		}
+		do {
+			try {
+				String input = JOptionPane.showInputDialog(questions.elementAt(zahl), JOptionPane.QUESTION_MESSAGE);
+					if (input != null && input.toLowerCase().equals(answers.elementAt(zahl))) {
+						JOptionPane.showMessageDialog(null, "You got the right answer!:\n " + answers.elementAt(zahl), null, JOptionPane.INFORMATION_MESSAGE);
+						quiz = false;
+						Player.getInstance().setIsAbleToMove(true);
+					}else
+						JOptionPane.showMessageDialog(null, "Wrong answer!", null, JOptionPane.INFORMATION_MESSAGE);
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}while (quiz);
 		
 	}
 	

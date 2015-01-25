@@ -1,5 +1,7 @@
 package GUI;
-
+/**
+ * Main class for the GUI.
+ */
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -64,9 +66,9 @@ public class MainFrame extends JFrame {
 		JMenu menuFile4 = new JMenu("Author");
 		
 		menuFile.add(MenuItemFactory.createMenuItem("Open Raumaufbau.txt...", 'o', "open_map"));
-		menuFile.add(MenuItemFactory.createMenuItem("Save...", 's', "file_save"));
-		menuFile.add(MenuItemFactory.createMenuItem("Quit...", 'q', "file_close"));
 		menuFile2.add(MenuItemFactory.createMenuItem("Open...", 'o', "figure_open"));
+		menuFile3.add(MenuItemFactory.createMenuItem("Description...", 'd', "descr"));
+		menuFile4.add(MenuItemFactory.createMenuItem("Show...", 'o', "show"));
 		
 		menuBar.add(menuFile);
 		menuBar.add(menuFile2);
