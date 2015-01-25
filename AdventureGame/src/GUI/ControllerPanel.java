@@ -57,7 +57,7 @@ public class ControllerPanel {
 		south.setBounds(85, 70, 60, 30);
 		
 		this.buttonPanel.add(textfield);
-		textfield.setBounds(450, 50, 345, 30);
+		textfield.setBounds(400, 50, 345, 30);
         textfield.addKeyListener(GameMaster.getInstance());
 	}
 	
