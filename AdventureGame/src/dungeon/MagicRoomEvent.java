@@ -54,7 +54,7 @@ public class MagicRoomEvent {
 	 * When the question has been answered, then the player is again able to move.
 	 */
 	public void quiz() {
-		if (answers == null) {
+		if (questions.size() == 0) {
 			setQandA();
 		}
 		Player.getInstance().setIsAbleToMove(false);
@@ -62,14 +62,16 @@ public class MagicRoomEvent {
 		boolean quiz = true;
 		Random r = new Random();
 		int zahl = r.nextInt(questions.size());
-		System.out.println(questions.elementAt(zahl));
+		System.out.println(zahl);
+		System.out.println("why oes this happen?" + questions.elementAt(zahl));
 		while (quiz) {
 			/*pseudocode:
 			* if (input.toLowerCase().equals(answers.elementAt(zahl)) {
 			* System.out.println("Deine Antwort ist richtig!");
 			* Player.getInstance().setIsAbleToMove(true);
-			* quiz = true;
+			* quiz = false;
 			*/
+			quiz = false;
 		}
 		
 	}

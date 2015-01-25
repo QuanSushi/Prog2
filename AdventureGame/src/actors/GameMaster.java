@@ -51,7 +51,8 @@ public class GameMaster implements ActionListener, KeyListener{
 			int r = random.nextInt(this.labyrinth.size());
 			
 			String s = String.valueOf(r);
-			this.player.setPosition(s);			
+			this.player.setPosition(s);	
+			System.out.println("Player spawned in room: " + player.getPosition());
 			System.out.println(this.player.getPosition());
 			this.player.addObserver(MapPanel.getInstance());
 		}
@@ -168,23 +169,32 @@ public class GameMaster implements ActionListener, KeyListener{
 			if (e.getActionCommand().equals("N")) {
 				System.out.println("North");
 				movePlayer("N");
+				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
+					MagicRoomEvent.getInstance().quiz();
+				}
 			} else if (e.getActionCommand().equals("W")) {
 				System.out.println("West");
 				movePlayer("W");
+				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
+					MagicRoomEvent.getInstance().quiz();
+				}
 			} else if (e.getActionCommand().equals("S")) {
 				System.out.println("South");
 				movePlayer("S");
+				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
+					MagicRoomEvent.getInstance().quiz();
+				}
 			} else if (e.getActionCommand().equals("E")) {
 				System.out.println("East");
 				movePlayer("E");
+				if ( getRoom(player.getPosition()).getIsMagicRoom()) {
+					MagicRoomEvent.getInstance().quiz();
+				}
 			}
 			
 			System.out.println(getPlayerRoom().toString()); 							// delete this later
 		}else
 			System.out.println("Not able to move yet!");
-		if ( getRoom(player.getPosition()).getIsMagicRoom()) {
-			MagicRoomEvent.getInstance().quiz();
-		}
 	}
 
 	@Override

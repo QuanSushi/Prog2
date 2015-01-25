@@ -15,8 +15,7 @@ public class TestStart {
 		c.setGameMaster();
 		MainFrame mf = new MainFrame();
 		mf.setVisible(true);
-		AWTConsole console = new AWTConsole();
-		
+
 	}
 
 }
