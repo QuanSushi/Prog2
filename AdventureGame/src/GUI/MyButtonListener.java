@@ -46,7 +46,7 @@ class MyButtonListener implements ActionListener {
 			Player.getInstance().setIsAbleToMove(true);
 		}
 		if(e.getActionCommand().equals("descr")){
-			JOptionPane.showMessageDialog(null, "Bewege dich mit deinem Spieler im Raum und löse die Zaubersprüche",null, JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Bewege dich mit deinem Spieler im Raum und loese die Zaubersprueche",null, JOptionPane.INFORMATION_MESSAGE);
 		}
 		if(e.getActionCommand().equals("show")){
 			JOptionPane.showMessageDialog(null, "Adventure Game ver1.0 \n"
