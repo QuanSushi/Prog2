@@ -60,7 +60,6 @@ public class MapPanel implements Observer {
 		for (int y = 0; y < this.getY(); y++) {
 			for (int x = 0; x < this.getX(); x++) {
 				MapTile label = new MapTile();
-				// label.setBorder(BorderFactory.createLineBorder(Color.white));
 				map[y][x] = label;
 				mapPanel.add(map[y][x]);
 			}
