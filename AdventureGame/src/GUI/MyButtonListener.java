@@ -49,7 +49,9 @@ class MyButtonListener implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Bewege dich mit deinem Spieler im Raum und löse die Zaubersprüche",null, JOptionPane.INFORMATION_MESSAGE);
 		}
 		if(e.getActionCommand().equals("show")){
-			JOptionPane.showMessageDialog(null, "Long Do: s0547270\nQuan Tran Anh: s0547269",null, JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Adventure Game ver1.0 \n"
+					+ "by \nLong Do: s0547270\nQuan Tran Anh: s0547269\n"
+					+ "Git: https://github.com/QuanSushi/Prog2",null, JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
