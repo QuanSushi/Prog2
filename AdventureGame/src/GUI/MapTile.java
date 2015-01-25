@@ -5,6 +5,9 @@ import input.ImageReader;
 import javax.swing.JLabel;
 
 public class MapTile extends JLabel {
+	
+	public MapTile() {
+	}
 
 	/**
 	 * 

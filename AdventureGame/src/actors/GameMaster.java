@@ -37,6 +37,7 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 
 	private Player player;
 	private Vector<AbstractRoom> labyrinth;
+	private AbstractRoom roomCache = null;
 
 	/**
 	 * Initiates the game. Sets player position to a random room.
@@ -115,6 +116,7 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 		AbstractRoom room = getPlayerRoom();
 		if (checkMove(direction, this.player.getPosition())) {
 			if (direction.equals(getMagicRoom().getId())) {
+				roomCache = getRoom(player.getDirection());
 				MagicRoomEvent.getInstance().quiz();
 			}
 			switch (direction) {
@@ -305,6 +307,14 @@ public class GameMaster extends Observable implements ActionListener, KeyListene
 		}else
 			JOptionPane.showMessageDialog(null, "Not able to move yet!", null, JOptionPane.ERROR_MESSAGE);
 
+	}
+
+	public AbstractRoom getRoomCache() {
+		return roomCache;
+	}
+
+	public void setRoomCache(AbstractRoom roomCache) {
+		this.roomCache = roomCache;
 	}
 
 }

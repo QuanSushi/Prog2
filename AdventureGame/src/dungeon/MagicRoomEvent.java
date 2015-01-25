@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
+import actors.GameMaster;
 import actors.Player;
 
 /**
@@ -68,7 +69,10 @@ public class MagicRoomEvent {
 		do {
 			try {
 				String input = JOptionPane.showInputDialog(questions.elementAt(zahl), JOptionPane.QUESTION_MESSAGE);
-					if (input != null && input.toLowerCase().equals(answers.elementAt(zahl))) {
+					if(input==null){
+						Player.getInstance().setIsAbleToMove(true);
+						break;
+					}else if (input != null && input.toLowerCase().equals(answers.elementAt(zahl))) {
 						JOptionPane.showMessageDialog(null, "You got the right answer!:\n " + answers.elementAt(zahl), null, JOptionPane.INFORMATION_MESSAGE);
 						quiz = false;
 						Player.getInstance().setIsAbleToMove(true);

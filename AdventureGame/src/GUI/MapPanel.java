@@ -25,6 +25,7 @@ public class MapPanel implements Observer {
 	private int yCoordinate;
 	private int xCoordinate;
 	private MapTile currentTile;
+	private MapTile previousTile;
 
 	public static MapPanel getInstance() {
 		if (instance == null) {
@@ -115,6 +116,7 @@ public class MapPanel implements Observer {
 			} else
 				map[yCoordinate][xCoordinate - 1].paint("room");
 		}
+		
 
 	}
 
@@ -123,6 +125,7 @@ public class MapPanel implements Observer {
 	 */
 	@Override
 	public void update(Observable GM, Object enterRoom) {
+		
 		getCurrentTile().paint("room");
 
 		if (enterRoom.equals("N")) {
@@ -181,6 +184,14 @@ public class MapPanel implements Observer {
 
 	public void setCurrentTile(MapTile mapTile) {
 		this.currentTile = mapTile;
+	}
+
+	public MapTile getPreviousTile() {
+		return previousTile;
+	}
+
+	public void setPreviousTile(MapTile previousTile) {
+		this.previousTile = previousTile;
 	}
 
 }
