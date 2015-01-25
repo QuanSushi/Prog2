@@ -1,5 +1,9 @@
 package input;
 
+/**
+ * This class loads image files
+ */
+
 import javax.swing.ImageIcon;
 
 public class ImageReader {
@@ -19,7 +23,7 @@ public class ImageReader {
 	
 	private ImageIcon image;
 	
-	/*
+	/**
 	 * loads imagefile
 	 */
 	public String getImgURL(String url) {
@@ -27,7 +31,7 @@ public class ImageReader {
 		return imageURL.getPath();
 	}
 	
-	/*
+	/**
 	 * This method returns image file.
 	 * String s sets the desired image to be returned.
 	 */

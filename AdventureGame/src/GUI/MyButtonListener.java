@@ -31,7 +31,7 @@ class MyButtonListener implements ActionListener {
 		if (e.getActionCommand().equals("open_map")) {
 			Client.getInstance().makeRoom();
 			Client.getInstance().startGame();
-			MapPanel.getInstance().drawMap();
+			MapPanel.getInstance().initSpawn();
 			MainFrame.getInstance().addMapPanel();
 		}
 	}

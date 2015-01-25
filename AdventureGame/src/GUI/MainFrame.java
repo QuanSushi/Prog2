@@ -48,7 +48,9 @@ public class MainFrame extends JFrame {
 
 		
 	}
-	
+	/**
+	 * this method adds MapPanel to MainFrame after game has been loaded
+	 */
 	public void addMapPanel() {
 		this.getContentPane().add(MapPanel.getInstance().getMapPanel());
 		this.validate();

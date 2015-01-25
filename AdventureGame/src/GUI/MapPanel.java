@@ -1,5 +1,9 @@
 package GUI;
 
+/**
+ * This class creates map tiles for the GUI
+ */
+
 import input.ImageReader;
 
 import java.awt.Color;
@@ -16,18 +20,18 @@ import javax.swing.JPanel;
 
 import actors.GameMaster;
 import actors.Player;
+import dungeon.AbstractRoom;
 import dungeon.Room;
 
 public class MapPanel implements Observer {
 	
 	private static MapPanel instance;
 	
-	static int X;
-	static int Y;
-	
-	Vector<Room> roomCache = null;
-	
-	ArrayList<JLabel> labels = new ArrayList<JLabel>();
+	private int X;
+	private int Y;
+	private int yCoordinate;
+	private int xCoordinate;
+	private MapTile currentTile;
 	
 	public static MapPanel getInstance() {
 		if (instance == null) {
@@ -36,63 +40,152 @@ public class MapPanel implements Observer {
 		return instance;
 	}
 	
-	JPanel mapPanel;
+	private JPanel mapPanel;
+	private MapTile map[][];
 	
 	private MapPanel() {
-		this.mapPanel  = new JPanel(new GridLayout(GameMaster.getInstance().countNorth(), GameMaster.getInstance().countEast()));
+		this.setY(GameMaster.getInstance().countNorth() * 2);
+		this.setX(GameMaster.getInstance().countEast() * 2);
+		this.map = new MapTile[getY()][getX()];
+		this.mapPanel  = new JPanel(new GridLayout(getY(), getX()));
 		mapPanel.setBackground(Color.BLACK);
-		mapPanel.setBorder(BorderFactory.createLineBorder(Color.red));
 		mapPanel.setPreferredSize(new Dimension(765, 595));
 		
 		createJLabels();
-		
+		System.out.println("labels created");
 	}
 	
 	public JPanel getMapPanel(){
 		return mapPanel;
 		
 	}
-	
+	/**
+	 * creates JLabels for the map tiles
+	 */
 	private void createJLabels() {
-		for (int i = 0; i < (9*7); i++) {
-			JLabel label = new JLabel();
-			label.setBorder(BorderFactory.createLineBorder(Color.white));
-			this.labels.add(label);
-			this.mapPanel.add(label);
-			
+		for (int y = 0; y < this.getY(); y++) {
+			for (int x = 0; x < this.getX(); x++) {
+				MapTile label = new MapTile();
+				//label.setBorder(BorderFactory.createLineBorder(Color.white));
+				map[y][x] = label;
+				mapPanel.add(map[y][x]);
+			}
 		}
 	}
 	
+	/**
+	 * init drawing and settings
+	 */
+	public void initSpawn() {
+		setyCoordinate(getY()/2);
+		setxCoordinate(getX()/2);
+		setCurrentTile(map[yCoordinate][xCoordinate]);
+		getCurrentTile().paint("pl_room");
+		drawMap();
+	}
+	
+	/**
+	 * this method draws the surrounding map tiles and the player
+	 */
 	public void drawMap() {
-		/*
-		Vector<Room> roomCache = null;
-		if (GameMaster.getInstance().getLabyrinth() != null) {
-		 roomCache= GameMaster.getInstance().getLabyrinth();
+		AbstractRoom cache = GameMaster.getInstance().getRoom(Player.getInstance().getPosition());
+		if (cache.getIsMagicRoom()) {
+			getCurrentTile().paint("pl_magicRoom");
+		}else
+			getCurrentTile().paint("pl_room");
+		
+		if (!cache.getN().equals("0")) {
+			if (GameMaster.getInstance().getRoom(cache.getN()).getIsMagicRoom()) {
+				map[yCoordinate - 1][xCoordinate].paint("magicRoom");
+			}else
+				map[yCoordinate - 1][xCoordinate].paint("room");
 		}
-		labels.get(0).setIcon(ImageReader.getInstance().getImage());
-		for (int room = 0; room < roomCache.size(); room++) {
-			if (!roomCache.elementAt(room).getN().equals("0")) {
-				//labels.get(room - 9).setIcon(ImageReader.getInstance().getImage());
+
+		if (!cache.getS().equals("0")) {
+			if (GameMaster.getInstance().getRoom(cache.getS()).getIsMagicRoom()) {
+				map[yCoordinate + 1][xCoordinate].paint("magicRoom");
 			}
-			if (!roomCache.elementAt(room).getE().equals("0")) {
-				labels.get(room + 1).setIcon(ImageReader.getInstance().getImage());
-			}
-			if (!roomCache.elementAt(room).getS().equals("0")) {
-				//labels.get(room +9).setIcon(ImageReader.getInstance().getImage());
-			}
-			if (!roomCache.elementAt(room).getW().equals("0")) {
-				labels.get(room - 1).setIcon(ImageReader.getInstance().getImage());
-			}
+			map[yCoordinate + 1][xCoordinate].paint("room");
 		}
-		*/
+		
+		if (!cache.getE().equals("0")) {
+			if (GameMaster.getInstance().getRoom(cache.getE()).getIsMagicRoom()) {
+				map[yCoordinate][xCoordinate + 1].paint("magicRoom");
+			}else 
+			map[yCoordinate][xCoordinate + 1].paint("room");
+		}
+		
+		if (!cache.getW().equals("0")) {
+			if (GameMaster.getInstance().getRoom(cache.getW()).getIsMagicRoom()) {
+				map[yCoordinate][xCoordinate - 1].paint("magic_room");
+			}else 
+			map[yCoordinate][xCoordinate - 1].paint("room");
+		}
+		
 	}
 	
-
+	/**
+	 * Updates playerposition in the GUI and paints tiles.
+	 */
 	@Override
-	public void update(Observable player, Object position) {
-		//pseudocode:
-		//find Room with ID == player.position and setIcon(ImageReader.getInstance().getImage());
+	public void update(Observable GM, Object enterRoom) {
+		getCurrentTile().paint("room");
+
+		if (enterRoom.equals("N")) {
+			yCoordinate += - 1;
+		}
+		if (enterRoom.equals("S")) {
+			yCoordinate += 1;
+		}
+		if (enterRoom.equals("E")) {
+			xCoordinate += 1;
+		}
+		if (enterRoom.equals("W")) {
+			xCoordinate += - 1;
+		}
+		setCurrentTile(map[yCoordinate][xCoordinate]);
+		drawMap();
 		System.out.println("Player now in room: " + Player.getInstance().getPosition());
+	}
+
+	public int getY() {
+		return Y;
+	}
+
+	public void setY(int y) {
+		Y = y;
+	}
+
+	public int getX() {
+		return X;
+	}
+
+	public void setX(int x) {
+		X = x;
+	}
+
+	public int getyCoordinate() {
+		return yCoordinate;
+	}
+
+	public void setyCoordinate(int yCoordinate) {
+		this.yCoordinate = yCoordinate;
+	}
+
+	public int getxCoordinate() {
+		return xCoordinate;
+	}
+
+	public void setxCoordinate(int xCoordinate) {
+		this.xCoordinate = xCoordinate;
+	}
+
+	public MapTile getCurrentTile() {
+		return currentTile;
+	}
+
+	public void setCurrentTile(MapTile mapTile) {
+		this.currentTile = mapTile;
 	}
 	
 
