@@ -13,7 +13,7 @@ public class TestStart {
 		Client c = Client.getInstance();
 		c.setFactory(Factory.getInstance(), FactoryB.getInstance());
 		c.setGameMaster();
-		MainFrame mf = new MainFrame();
+		MainFrame mf = MainFrame.getInstance();
 		mf.setVisible(true);
 
 	}

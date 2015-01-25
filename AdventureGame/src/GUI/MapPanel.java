@@ -22,8 +22,8 @@ public class MapPanel implements Observer {
 	
 	private static MapPanel instance;
 	
-	static final int X = 9;
-	static final int Y = 7;
+	static int X;
+	static int Y;
 	
 	Vector<Room> roomCache = null;
 	
@@ -36,10 +36,10 @@ public class MapPanel implements Observer {
 		return instance;
 	}
 	
-	JPanel mapPanel = new JPanel(new GridLayout(Y, X));
+	JPanel mapPanel;
 	
 	private MapPanel() {
-		
+		this.mapPanel  = new JPanel(new GridLayout(GameMaster.getInstance().countNorth(), GameMaster.getInstance().countEast()));
 		mapPanel.setBackground(Color.BLACK);
 		mapPanel.setBorder(BorderFactory.createLineBorder(Color.red));
 		mapPanel.setPreferredSize(new Dimension(765, 595));

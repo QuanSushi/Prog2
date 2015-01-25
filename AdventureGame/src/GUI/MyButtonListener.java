@@ -32,6 +32,7 @@ class MyButtonListener implements ActionListener {
 			Client.getInstance().makeRoom();
 			Client.getInstance().startGame();
 			MapPanel.getInstance().drawMap();
+			MainFrame.getInstance().addMapPanel();
 		}
 	}
 

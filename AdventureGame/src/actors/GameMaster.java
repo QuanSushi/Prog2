@@ -48,12 +48,11 @@ public class GameMaster implements ActionListener, KeyListener{
 		if (this.player == null) {
 			this.player = Player.getInstance();
 			Random random = new Random();
-			int r = random.nextInt(this.labyrinth.size());
+			int r = random.nextInt(this.labyrinth.size() + 1);
 			
 			String s = String.valueOf(r);
 			this.player.setPosition(s);	
 			System.out.println("Player spawned in room: " + player.getPosition());
-			System.out.println(this.player.getPosition());
 			this.player.addObserver(MapPanel.getInstance());
 		}
 	}
@@ -162,6 +161,30 @@ public class GameMaster implements ActionListener, KeyListener{
 		}
 		return room;
 	}
+	
+	public int countNorth() {
+		int north = 0;
+		
+		for (int i = 0; i < labyrinth.size(); i++) {
+			if (!labyrinth.elementAt(i).getN().equals("0")) {
+				north++;
+			}
+		}
+		
+		return north;
+	}
+	
+	public int countEast() {
+		int east = 0;
+		
+		for (int i = 0; i < labyrinth.size(); i++) {
+			if (!labyrinth.elementAt(i).getE().equals("0")) {
+				east++;
+			}
+		}
+		
+		return east;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -234,10 +257,6 @@ public class GameMaster implements ActionListener, KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-	}
-
-	public Vector getLabyrinth() {
-		return this.labyrinth;
 	}
 
 }

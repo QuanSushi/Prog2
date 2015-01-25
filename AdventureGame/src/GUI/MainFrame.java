@@ -19,10 +19,19 @@ public class MainFrame extends JFrame {
 	/**
 	 * 
 	 */
-	public MainFrame() {
+	
+	private static MainFrame instance;
+	
+	public static MainFrame getInstance() {
+		if (instance == null) {
+			instance = new MainFrame();
+		}
+		return instance;
+	}
+	
+	private MainFrame() {
 		
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-		MapPanel map = MapPanel.getInstance();
 		ControllerPanel controller = new ControllerPanel();
 		
 		this.setTitle("Maze Game");
@@ -35,10 +44,14 @@ public class MainFrame extends JFrame {
 	
 		createMenuBar();
 		controller.createButtons();
-		getContentPane().add(map.getMapPanel());
 		getContentPane().add(controller.getControllerPanel(),BorderLayout.PAGE_END);
 
 		
+	}
+	
+	public void addMapPanel() {
+		this.getContentPane().add(MapPanel.getInstance().getMapPanel());
+		this.validate();
 	}
 
 	private void createMenuBar() {
